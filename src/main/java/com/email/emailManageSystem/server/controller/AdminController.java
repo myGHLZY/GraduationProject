@@ -1,5 +1,6 @@
 package com.email.emailManageSystem.server.controller;
 
+import com.email.emailManageSystem.common.result.Result;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "管理员模块")
 public class AdminController {
 
-
+//    Result<>
 
 }
