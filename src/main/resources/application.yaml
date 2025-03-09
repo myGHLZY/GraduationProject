@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: emailManageSystem
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/email_manage_system?useSSL=false&serverTimezone=UTC
+    username: root
+    password: ACEG1234554321
