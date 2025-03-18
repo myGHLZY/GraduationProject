@@ -28,9 +28,8 @@ public class AdminController {
     @GetMapping("/login")
     @ApiOperation("管理员登录")
     Result<Admin> login(String adminName, String adminPassword){
-//        System.out.println(adminName);
-        Admin admin = adminService.login(adminName, adminPassword);
 
+        Admin admin = adminService.login(adminName, adminPassword);
         return admin == null ? Result.error("用户名或密码错误") : Result.success(admin);
     }
 
