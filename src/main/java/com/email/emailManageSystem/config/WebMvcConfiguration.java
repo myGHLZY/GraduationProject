@@ -1,7 +1,10 @@
 package com.email.emailManageSystem.config;
 
+import com.email.emailManageSystem.Interceptor.AdminLoginInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -22,6 +25,22 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
+
+
+    @Autowired
+    AdminLoginInterceptor adminLoginInterceptor;
+
+
+    /**
+     * @description:  管理员登录拦截器配置,除了登录接口，其他全拦截
+     * @date: 2025/3/22 14:05
+     */
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(adminLoginInterceptor)
+                .addPathPatterns("/admin/**")
+                .excludePathPatterns("/admin/login");
+    }
 
     /**
      * 通过knife4j生成接口文档

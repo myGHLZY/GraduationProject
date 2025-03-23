@@ -2,6 +2,7 @@ package com.email.emailManageSystem.server.controller;
 
 import com.email.emailManageSystem.common.result.Result;
 import com.email.emailManageSystem.pojo.entity.Admin;
+import com.email.emailManageSystem.pojo.vo.AdminLoginVo;
 import com.email.emailManageSystem.server.service.AdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.print.DocFlavor;
+import java.util.UUID;
 
 /**
  * @author userlzy
@@ -27,10 +29,13 @@ public class AdminController {
 
     @GetMapping("/login")
     @ApiOperation("管理员登录")
-    Result<Admin> login(String adminName, String adminPassword){
+    Result<AdminLoginVo> login(String adminName, String adminPassword){
 
         Admin admin = adminService.login(adminName, adminPassword);
-        return admin == null ? Result.error("用户名或密码错误") : Result.success(admin);
+        AdminLoginVo adminLoginVo = new AdminLoginVo();
+        adminLoginVo.setAdmin(admin);
+        adminLoginVo.setUuid(UUID.randomUUID().toString());
+        return admin == null ? Result.error("用户名或密码错误") : Result.success(adminLoginVo);
     }
 
 }
