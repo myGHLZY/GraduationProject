@@ -4,8 +4,10 @@ import com.email.emailManageSystem.common.result.Result;
 import com.email.emailManageSystem.pojo.entity.Admin;
 import com.email.emailManageSystem.pojo.vo.AdminLoginVo;
 import com.email.emailManageSystem.server.service.AdminService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,8 @@ import java.util.UUID;
  * @description:
  * @date 2025/3/8 22:03
  */
-@RestController("/admin")
+@RestController
+@RequestMapping("/admin")
 @Api(tags = "管理员模块")
 public class AdminController {
 
@@ -29,13 +32,18 @@ public class AdminController {
 
     @GetMapping("/login")
     @ApiOperation("管理员登录")
-    Result<AdminLoginVo> login(String adminName, String adminPassword){
+    Result<AdminLoginVo> login(String adminName, String adminPassword) throws JsonProcessingException {
+        System.out.println("访问登录端口");
+        AdminLoginVo admin = adminService.login(adminName, adminPassword);
+        return admin == null ? Result.error("用户名或密码错误") : Result.success(admin);
+    }
 
-        Admin admin = adminService.login(adminName, adminPassword);
-        AdminLoginVo adminLoginVo = new AdminLoginVo();
-        adminLoginVo.setAdmin(admin);
-        adminLoginVo.setUuid(UUID.randomUUID().toString());
-        return admin == null ? Result.error("用户名或密码错误") : Result.success(adminLoginVo);
+    @GetMapping("/aaa")
+    @ApiOperation("管理员登录")
+    Result<AdminLoginVo> test(String adminName, String adminPassword) throws JsonProcessingException {
+        System.out.println("访问登录端口");
+        AdminLoginVo admin = adminService.login(adminName, adminPassword);
+        return admin == null ? Result.error("用户名或密码错误") : Result.success(admin);
     }
 
 }

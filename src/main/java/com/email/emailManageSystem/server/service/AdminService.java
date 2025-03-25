@@ -1,6 +1,8 @@
 package com.email.emailManageSystem.server.service;
 
 import com.email.emailManageSystem.pojo.entity.Admin;
+import com.email.emailManageSystem.pojo.vo.AdminLoginVo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,6 +15,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AdminService {
 
-    Admin login(String adminName, String adminPassword);
+    AdminLoginVo login(String adminName, String adminPassword) throws JsonProcessingException;
 
 }
