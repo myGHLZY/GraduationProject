@@ -6,7 +6,7 @@ import lombok.ToString;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: User实体类
  * @date 2025/3/9 16:28
  */
 @Data

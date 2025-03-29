@@ -1,6 +1,8 @@
 package com.email.emailManageSystem.server.controller;
 
 import com.email.emailManageSystem.common.result.Result;
+import com.email.emailManageSystem.pojo.dto.AdminDTO;
+import com.email.emailManageSystem.pojo.dto.AdminFindDTO;
 import com.email.emailManageSystem.pojo.entity.Admin;
 import com.email.emailManageSystem.pojo.vo.AdminLoginVo;
 import com.email.emailManageSystem.server.service.AdminService;
@@ -9,9 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.print.DocFlavor;
 import java.util.UUID;
@@ -33,17 +33,26 @@ public class AdminController {
     @GetMapping("/login")
     @ApiOperation("管理员登录")
     Result<AdminLoginVo> login(String adminName, String adminPassword) throws JsonProcessingException {
-        System.out.println("访问登录端口");
+//        System.out.println("访问登录端口"); TODO 日志打印
         AdminLoginVo admin = adminService.login(adminName, adminPassword);
         return admin == null ? Result.error("用户名或密码错误") : Result.success(admin);
     }
 
-    @GetMapping("/aaa")
-    @ApiOperation("管理员登录")
-    Result<AdminLoginVo> test(String adminName, String adminPassword) throws JsonProcessingException {
-        System.out.println("访问登录端口");
-        AdminLoginVo admin = adminService.login(adminName, adminPassword);
-        return admin == null ? Result.error("用户名或密码错误") : Result.success(admin);
+//    @PostMapping("/update")
+//    @ApiOperation("修改管理员信息")
+//    Result<String> update(@RequestBody AdminDTO adminDTO){
+//        // 这个地方，首先被拦截器拦截，检查两个方面 一是UUID 二是是否有权限
+//
+//
+//
+//        return Result.success("修改成功!");
+//    }
+
+    @PostMapping("/find")
+    @ApiOperation("管理员查询")
+    Result<Admin> find(@RequestBody AdminFindDTO adminFindDTO){
+        Admin admin = adminService.find(adminFindDTO);
+        return admin==null?Result.error("查询不到用户"):Result.success(admin, "查询成功");
     }
 
 }

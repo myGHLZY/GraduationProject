@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: 序列化器
  * @date 2025/3/23 14:13
  */
 

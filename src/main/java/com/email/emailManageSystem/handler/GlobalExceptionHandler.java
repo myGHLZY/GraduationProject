@@ -10,7 +10,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: 全局异常处理器
  * @date 2025/3/23 16:19
  */
 @RestControllerAdvice

@@ -1,4 +1,4 @@
-package com.email.emailManageSystem.Interceptor;
+package com.email.emailManageSystem.Interceptor.Admin;
 
 import com.email.emailManageSystem.common.properties.LoginProperties;
 import com.email.emailManageSystem.pojo.entity.Admin;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: 管理员登录拦截器，注意这个拦截器只负责UUID的检查，其他的如权限检查由其他拦截器完成
  * @date 2025/3/22 14:02
  */
 @Component
@@ -32,6 +32,7 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
 
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
+        System.out.println("登录拦截器");
         // 从请求头中获得uuid
         String uuid = request.getHeader(loginProperties.getAdminAuth());
         if (uuid == null)
@@ -51,8 +52,8 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
             throw new RuntimeException("用户登录超时");
         }
 
-        String json = stringRedisTemplate.opsForValue().get("uuid");
-        if (json != null)
+
+        if (stringRedisTemplate.hasKey(uuid))
         {
             stringRedisTemplate.expire(uuid, loginProperties.getAdminExpire(), TimeUnit.MINUTES);
             return true;
@@ -63,7 +64,9 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
 //    default void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
 //    }
 //
-//    default void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
-//    }
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
+
+
+    }
 
 }

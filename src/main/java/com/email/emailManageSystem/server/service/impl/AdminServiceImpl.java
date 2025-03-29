@@ -1,6 +1,8 @@
 package com.email.emailManageSystem.server.service.impl;
 
 import com.email.emailManageSystem.common.properties.LoginProperties;
+import com.email.emailManageSystem.pojo.dto.AdminDTO;
+import com.email.emailManageSystem.pojo.dto.AdminFindDTO;
 import com.email.emailManageSystem.pojo.entity.Admin;
 import com.email.emailManageSystem.pojo.vo.AdminLoginVo;
 import com.email.emailManageSystem.server.mapper.AdminMapper;
@@ -18,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: 管理员的Service类
  * @date 2025/3/9 16:58
  */
 
@@ -38,6 +40,8 @@ public class AdminServiceImpl implements AdminService{
     public AdminLoginVo login(String adminName, String adminPassword) throws JsonProcessingException {
 
         Admin admin = adminMapper.getAdminByNameAndPassword(adminName, adminPassword);
+        // TODO 暂时的处理
+        admin.setAdminPassword("******");
         if(admin == null)
             return null;
         AdminLoginVo adminLoginVo = new AdminLoginVo();
@@ -47,5 +51,19 @@ public class AdminServiceImpl implements AdminService{
         String serialize = SerializeUtils.serialize(adminLoginVo.getAdmin());
         stringRedisTemplate.opsForValue().set(adminLoginVo.getUuid(),serialize, loginProperties.getAdminExpire(), TimeUnit.MINUTES);
         return adminLoginVo;
+    }
+
+    @Override
+    public Boolean update(AdminDTO adminDTO) {
+
+        Boolean bool = adminMapper.update(adminDTO);
+
+        return null;
+    }
+
+    @Override
+    public Admin find(AdminFindDTO adminFindDTO) {
+        Admin admin = adminMapper.find(adminFindDTO);
+        return admin;
     }
 }

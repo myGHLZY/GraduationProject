@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: Email实体类
  * @date 2025/3/9 16:28
  */
 

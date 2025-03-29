@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: redisTemplate的配置
  * @date 2025/3/23 15:57
  */
 @Component
