@@ -21,4 +21,6 @@ public interface AdminMapper {
     Page<Admin> list(AdminPageQueryDTO adminPageQueryDTO);
 
     void insert(Admin admin);
+
+    void deprecated(Long adminId);
 }

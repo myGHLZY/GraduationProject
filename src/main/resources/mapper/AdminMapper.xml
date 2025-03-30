@@ -10,7 +10,8 @@
             admin_super_permission,
             admin_manage_user,
             admin_content,
-            admin_log
+            admin_log,
+            admin_using
         FROM
             admin
         WHERE
@@ -18,29 +19,30 @@
           AND admin_password = #{adminPassword};
     </select>
 
+<!--    这个地方不改弃用，有专门的端口-->
     <update id="update">
         update admin
         <set>
             <if test="adminName != null">
-                admin_name = #{adminName},
+                admin_name = #{adminName}
             </if>
             <if test="adminPassword != null">
-                admin_password = #{adminPassword},
+                admin_password = #{adminPassword}
             </if>
             <if test="adminAvatarUrl != null">
-                admin_avatarUrl = #{adminAvatarUrl},
+                admin_avatarUrl = #{adminAvatarUrl}
             </if>
             <if test="adminSuperPermission != null">
-                admin_super_permission = #{adminSuperPermission},
+                admin_super_permission = #{adminSuperPermission}
             </if>
             <if test="adminManageUser != null">
-                admin_manage_user = #{adminManageUser},
+                admin_manage_user = #{adminManageUser}
             </if>
             <if test="adminContent != null">
-                admin_content = #{adminContent},
+                admin_content = #{adminContent}
             </if>
             <if test="adminLog != null">
-                admin_log = #{adminLog},
+                admin_log = #{adminLog}
             </if>
         </set>
         where id = #{id}
@@ -59,7 +61,7 @@
             <if test="adminId != null">
                 and admin_id = #{adminId}
             </if>
-            <if test="adminName != null">
+            <if test="adminName != null and adminName.length() != 0">
                 and admin_name like concat('%',#{adminName},'%')
             </if>
             <if test="adminSuperPermission != null">
@@ -73,6 +75,9 @@
             </if>
             <if test="adminLog != null">
                 and admin_log = #{adminLog}
+            </if>
+            <if test="adminUsing != null">
+                and admin_using = #{adminUsing}
             </if>
         </where>
     </select>
@@ -90,7 +95,7 @@
             <if test="adminId != null">
                 and admin_id = #{adminId}
             </if>
-            <if test="adminName != null">
+            <if test="adminName != null and adminName.length() != 0">
                 and admin_name like concat('%',#{adminName},'%')
             </if>
             <if test="adminSuperPermission != null">
@@ -105,13 +110,22 @@
             <if test="adminLog != null">
                 and admin_log = #{adminLog}
             </if>
+            <if test="adminUsing != null">
+                and admin_using = #{adminUsing}
+            </if>
         </where>
     </select>
 
     <insert id="insert">
         insert into admin
-        (admin_name, admin_password, admin_avatar_url, admin_super_permission, admin_manage_user, admin_content, admin_log)
-        values (#{adminName}, #{adminPassword}, #{adminAvatarUrl},  #{adminSuperPermission},  #{adminManageUser},  #{adminContent},  #{adminLog})
+        (admin_name, admin_password, admin_avatar_url, admin_super_permission, admin_manage_user, admin_content, admin_log, admin_using)
+        values (#{admin_name}, #{adminPassword}, #{adminAvatarUrl},  #{adminSuperPermission},  #{adminManageUser},  #{adminContent},  #{adminLog}, #{adminUsing})
     </insert>
+
+    <update id="deprecated">
+        UPDATE admin
+        SET admin_using = 0
+        WHERE admin_id = #{admin_id};
+    </update>
 
 </mapper>

@@ -25,5 +25,6 @@ public class AdminQueryDTO implements Serializable {
     Boolean adminManageUser; //TINYINT(1) DEFAULT 0 COMMENT '用户管理权限（0：否，1：是）',
     Boolean adminContent; //TINYINT(1) DEFAULT 0 COMMENT '信息发布权限（0：否，1：是）',
     Boolean adminLog; //TINYINT(1) DEFAULT 0 COMMENT '日志查看权限（0：否，1：是）',
+    Boolean adminUsing;
 
 }

@@ -68,4 +68,18 @@ public class AdminController {
         return Result.success("成功");
     }
 
+    @PostMapping("/delete")
+    @ApiOperation("管理员的删除功能")
+    Result delete(){
+
+        return Result.success("删除成功");
+    }
+
+    @PostMapping("/deprecated")
+    @ApiOperation("管理员的弃用功能")
+    Result deprecated(Long adminId){
+        adminService.deprecated(adminId);
+        return Result.success("弃用成功");
+    }
+
 }

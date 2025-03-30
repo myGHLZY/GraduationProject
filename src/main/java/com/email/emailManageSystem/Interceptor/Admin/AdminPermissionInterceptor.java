@@ -34,6 +34,12 @@ public class AdminPermissionInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
         String uuid = request.getHeader(loginProperties.getAdminAuth());
         Admin admin = SerializeUtils.deserialize(stringRedisTemplate.opsForValue().get(uuid),Admin.class);
+        // 检查是否弃用
+        if(!admin.getAdminUsing())
+        {
+            stringRedisTemplate.delete(uuid);
+            throw new RuntimeException("账号已经弃用");
+        }
         // 1 是否有访问"/admin/update"接口的权限,也就是超级管理员权限 TODO 太多的if需要优化
         if (uri.equals(RequestUriConstant.adminUpdate) && admin.getAdminSuperPermission())
             return true;
@@ -42,6 +48,8 @@ public class AdminPermissionInterceptor implements HandlerInterceptor {
         if (uri.equals(RequestUriConstant.adminFind) && admin.getAdminSuperPermission())
             return true;
         if (uri.equals(RequestUriConstant.adminInsert) && admin.getAdminSuperPermission())
+            return true;
+        if (uri.equals(RequestUriConstant.adminDeprecated) && admin.getAdminSuperPermission())
             return true;
         throw new RuntimeException("无权限");
 

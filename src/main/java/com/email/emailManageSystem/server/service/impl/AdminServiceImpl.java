@@ -88,4 +88,9 @@ public class AdminServiceImpl implements AdminService{
     public void insert(Admin admin) {
         adminMapper.insert(admin);
     }
+
+    @Override
+    public void deprecated(Long adminId) {
+        adminMapper.deprecated(adminId);
+    }
 }

@@ -28,4 +28,6 @@ public interface AdminService {
     PageResult list(AdminPageQueryDTO adminPageQueryDTO);
 
     void insert(Admin admin);
+
+    void deprecated(Long adminId);
 }
