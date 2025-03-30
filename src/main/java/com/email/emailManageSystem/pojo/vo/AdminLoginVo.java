@@ -4,6 +4,7 @@ import com.email.emailManageSystem.pojo.entity.Admin;
 import lombok.Data;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 @Data
 @ToString
-public class AdminLoginVo {
+public class AdminLoginVo implements Serializable {
 
     Admin admin;
     String uuid;

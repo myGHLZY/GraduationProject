@@ -25,10 +25,17 @@ mybatis:
   configuration:
     #??????
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+##pagehelper????
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
 
 email:
   login:
     admin-auth: admin-auth
     user-auth: user-auth
-    admin-expire: 30
+    admin-expire: 3000    #{TODO ????????}
     user-expire: 30

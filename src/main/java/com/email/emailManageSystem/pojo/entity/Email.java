@@ -1,8 +1,11 @@
 package com.email.emailManageSystem.pojo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +17,9 @@ import java.time.LocalDateTime;
 
 @Data
 @ToString
-public class Email {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Email implements Serializable {
 
     private Long emailId; // 主键（自增）
     private Integer emailReceiveUserId; // 收件人id

@@ -79,6 +79,13 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+<!--        TODO 版本问题，这里要用1.4.6-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.4.6</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>

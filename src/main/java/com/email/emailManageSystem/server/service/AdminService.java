@@ -1,7 +1,9 @@
 package com.email.emailManageSystem.server.service;
 
+import com.email.emailManageSystem.common.result.PageResult;
 import com.email.emailManageSystem.pojo.dto.AdminDTO;
-import com.email.emailManageSystem.pojo.dto.AdminFindDTO;
+import com.email.emailManageSystem.pojo.dto.AdminPageQueryDTO;
+import com.email.emailManageSystem.pojo.dto.AdminQueryDTO;
 import com.email.emailManageSystem.pojo.entity.Admin;
 import com.email.emailManageSystem.pojo.vo.AdminLoginVo;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,5 +23,9 @@ public interface AdminService {
 
     Boolean update(AdminDTO adminDTO);
 
-    Admin find(AdminFindDTO adminFindDTO);
+    Admin find(AdminQueryDTO adminQueryDTO);
+
+    PageResult list(AdminPageQueryDTO adminPageQueryDTO);
+
+    void insert(Admin admin);
 }

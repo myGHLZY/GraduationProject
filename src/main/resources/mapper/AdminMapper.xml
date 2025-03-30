@@ -60,22 +60,58 @@
                 and admin_id = #{adminId}
             </if>
             <if test="adminName != null">
-                and admin_name = #{adminName},
+                and admin_name like concat('%',#{adminName},'%')
             </if>
             <if test="adminSuperPermission != null">
-                and admin_super_permission = #{adminSuperPermission},
+                and admin_super_permission = #{adminSuperPermission}
             </if>
             <if test="adminManageUser != null">
-                and admin_manage_user = #{adminManageUser},
+                and admin_manage_user = #{adminManageUser}
             </if>
             <if test="adminContent != null">
-                and admin_content = #{adminContent},
+                and admin_content = #{adminContent}
             </if>
             <if test="adminLog != null">
-                and admin_log = #{adminLog},
+                and admin_log = #{adminLog}
             </if>
         </where>
     </select>
 
+    <select id="list" resultType="Admin">
+        select admin_id,
+        admin_name,
+        admin_password,
+        admin_avatar_url,
+        admin_super_permission,
+        admin_manage_user,
+        admin_content,
+        admin_log from admin
+        <where>
+            <if test="adminId != null">
+                and admin_id = #{adminId}
+            </if>
+            <if test="adminName != null">
+                and admin_name like concat('%',#{adminName},'%')
+            </if>
+            <if test="adminSuperPermission != null">
+                and admin_super_permission = #{adminSuperPermission}
+            </if>
+            <if test="adminManageUser != null">
+                and admin_manage_user = #{adminManageUser}
+            </if>
+            <if test="adminContent != null">
+                and admin_content = #{adminContent}
+            </if>
+            <if test="adminLog != null">
+                and admin_log = #{adminLog}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert">
+        insert into admin
+        (admin_name, admin_password, admin_avatar_url, admin_super_permission, admin_manage_user, admin_content, admin_log)
+        values (#{adminName}, #{adminPassword}, #{adminAvatarUrl},  #{adminSuperPermission},  #{adminManageUser},  #{adminContent},  #{adminLog})
+    </insert>
 
 </mapper>

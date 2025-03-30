@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: Thread工具
  * @date 2025/3/27 21:38
  */
 @Component

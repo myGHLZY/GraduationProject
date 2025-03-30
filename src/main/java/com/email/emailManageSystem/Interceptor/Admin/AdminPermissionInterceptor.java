@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author userlzy
  * @version 1.0
- * @description: TODO
+ * @description: 权限拦截器
  * @date 2025/3/25 23:06
  */
 @Component
@@ -34,17 +34,15 @@ public class AdminPermissionInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
         String uuid = request.getHeader(loginProperties.getAdminAuth());
         Admin admin = SerializeUtils.deserialize(stringRedisTemplate.opsForValue().get(uuid),Admin.class);
-        // 1 是否有访问"/admin/update"接口的权限,也就是超级管理员权限
+        // 1 是否有访问"/admin/update"接口的权限,也就是超级管理员权限 TODO 太多的if需要优化
         if (uri.equals(RequestUriConstant.adminUpdate) && admin.getAdminSuperPermission())
-        {
-            // System.out.println("有权限");
             return true;
-        }
+        if (uri.equals(RequestUriConstant.adminList) && admin.getAdminSuperPermission())
+            return true;
         if (uri.equals(RequestUriConstant.adminFind) && admin.getAdminSuperPermission())
-        {
-             // System.out.println("有权限");
             return true;
-        }
+        if (uri.equals(RequestUriConstant.adminInsert) && admin.getAdminSuperPermission())
+            return true;
         throw new RuntimeException("无权限");
 
     }

@@ -1,7 +1,11 @@
 package com.email.emailManageSystem.pojo.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.io.Serializable;
 
 /**
  * @author userlzy
@@ -11,7 +15,8 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class UserLoginVo {
+@AllArgsConstructor
+public class UserLoginVo implements Serializable {
 
 
 

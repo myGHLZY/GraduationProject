@@ -1,8 +1,11 @@
 package com.email.emailManageSystem.server.mapper;
 
+import com.email.emailManageSystem.common.result.PageResult;
 import com.email.emailManageSystem.pojo.dto.AdminDTO;
-import com.email.emailManageSystem.pojo.dto.AdminFindDTO;
+import com.email.emailManageSystem.pojo.dto.AdminPageQueryDTO;
+import com.email.emailManageSystem.pojo.dto.AdminQueryDTO;
 import com.email.emailManageSystem.pojo.entity.Admin;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,5 +16,9 @@ public interface AdminMapper {
 
     Boolean update(AdminDTO adminDTO);
 
-    Admin find(AdminFindDTO adminFindDTO);
+    Admin find(AdminQueryDTO adminQueryDTO);
+
+    Page<Admin> list(AdminPageQueryDTO adminPageQueryDTO);
+
+    void insert(Admin admin);
 }

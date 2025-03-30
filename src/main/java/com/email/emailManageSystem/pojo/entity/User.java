@@ -1,7 +1,11 @@
 package com.email.emailManageSystem.pojo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.io.Serializable;
 
 /**
  * @author userlzy
@@ -11,7 +15,9 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class User {
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements Serializable {
 
     private Long userId; // 主键（自增）
     private String userPassword; // 密码（6-10位，数字、字母和特殊字符结合）
