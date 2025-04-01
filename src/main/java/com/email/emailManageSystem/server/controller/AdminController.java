@@ -2,6 +2,7 @@ package com.email.emailManageSystem.server.controller;
 
 import com.email.emailManageSystem.common.result.PageResult;
 import com.email.emailManageSystem.common.result.Result;
+import com.email.emailManageSystem.pojo.dto.AdminDTO;
 import com.email.emailManageSystem.pojo.dto.AdminPageQueryDTO;
 import com.email.emailManageSystem.pojo.dto.AdminQueryDTO;
 import com.email.emailManageSystem.pojo.entity.Admin;
@@ -37,15 +38,12 @@ public class AdminController {
         return admin == null ? Result.error("用户名或密码错误") : Result.success(admin);
     }
 
-//    @PostMapping("/update")
-//    @ApiOperation("修改管理员信息")
-//    Result<String> update(@RequestBody AdminDTO adminDTO){
-//        // 这个地方，首先被拦截器拦截，检查两个方面 一是UUID 二是是否有权限
-//
-//
-//
-//        return Result.success("修改成功!");
-//    }
+    @PostMapping("/update")
+    @ApiOperation("修改管理员信息")
+    Result<String> update(@RequestBody Admin admin){
+        adminService.update(admin);
+        return Result.success("修改成功!");
+    }
 
     @PostMapping("/find")
     @ApiOperation("管理员查询")
@@ -70,15 +68,15 @@ public class AdminController {
 
     @PostMapping("/delete")
     @ApiOperation("管理员的删除功能")
-    Result delete(){
-
+    Result delete(@RequestBody List<Long> adminIds){
+        adminService.delete(adminIds);
         return Result.success("删除成功");
     }
 
     @PostMapping("/deprecated")
     @ApiOperation("管理员的弃用功能")
-    Result deprecated(Long adminId){
-        adminService.deprecated(adminId);
+    Result deprecated(@RequestBody List<Long> adminIds){
+        adminService.deprecated(adminIds);
         return Result.success("弃用成功");
     }
 

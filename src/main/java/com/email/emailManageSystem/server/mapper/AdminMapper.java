@@ -9,12 +9,14 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface AdminMapper {
 
     Admin getAdminByNameAndPassword(@Param("adminName") String adminName, @Param("adminPassword")String adminPassword);
 
-    Boolean update(AdminDTO adminDTO);
+    Boolean update(Admin admin);
 
     Admin find(AdminQueryDTO adminQueryDTO);
 
@@ -22,5 +24,7 @@ public interface AdminMapper {
 
     void insert(Admin admin);
 
-    void deprecated(Long adminId);
+    void deprecated(List<Long> adminIds);
+
+    void delete(List<Long> adminIds);
 }

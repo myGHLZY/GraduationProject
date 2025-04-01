@@ -9,6 +9,8 @@ import com.email.emailManageSystem.pojo.vo.AdminLoginVo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author userlzy
  * @version 1.0
@@ -21,7 +23,7 @@ public interface AdminService {
 
     AdminLoginVo login(String adminName, String adminPassword) throws JsonProcessingException;
 
-    Boolean update(AdminDTO adminDTO);
+    void update(Admin admin);
 
     Admin find(AdminQueryDTO adminQueryDTO);
 
@@ -29,5 +31,7 @@ public interface AdminService {
 
     void insert(Admin admin);
 
-    void deprecated(Long adminId);
+    void deprecated(List<Long> adminIds);
+
+    void delete(List<Long> adminIds);
 }

@@ -17,6 +17,7 @@ public class RequestUriConstant {
     public static final String adminList = "/admin/list";
     public static final String adminInsert = "/admin/insert";
     public static final String adminDeprecated = "/admin/deprecated";
+    public static final String adminDelete = "/admin/delete";
 
 
 }

@@ -51,6 +51,8 @@ public class AdminPermissionInterceptor implements HandlerInterceptor {
             return true;
         if (uri.equals(RequestUriConstant.adminDeprecated) && admin.getAdminSuperPermission())
             return true;
+        if (uri.equals(RequestUriConstant.adminDelete) && admin.getAdminSuperPermission())
+            return true;
         throw new RuntimeException("无权限");
 
     }

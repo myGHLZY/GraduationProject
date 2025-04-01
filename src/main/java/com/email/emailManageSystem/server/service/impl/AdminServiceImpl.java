@@ -59,11 +59,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public Boolean update(AdminDTO adminDTO) {
-
-        Boolean bool = adminMapper.update(adminDTO);
-
-        return null;
+    public void update(Admin admin) {
+        adminMapper.update(admin);
     }
 
     @Override
@@ -90,7 +87,12 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void deprecated(Long adminId) {
-        adminMapper.deprecated(adminId);
+    public void deprecated(List<Long> adminIds) {
+        adminMapper.deprecated(adminIds);
+    }
+
+    @Override
+    public void delete(List<Long> adminIds) {
+        adminMapper.delete(adminIds);
     }
 }
